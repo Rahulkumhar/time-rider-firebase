@@ -63,7 +63,7 @@ useEffect(() => {
   return (
     <div className="c-app c-default-layout flex-row align-items-center">
       <CContainer>
-         <LoaderComp loading={loading} />
+         {/* <LoaderComp loading={loading} />  */}
         <CRow className="justify-content-center">
           <CCol md="8">
             <CCardGroup>

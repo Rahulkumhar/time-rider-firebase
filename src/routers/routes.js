@@ -44,6 +44,7 @@ const RiderDetails = React.lazy (() => import('../components/Rider/RiderDetails'
 const DriverList = React.lazy (() => import('../components/Driver/DriverList'));
 const DriverDetails = React.lazy (() => import('../components/Driver/DriverDetails'));
 const AdminDashboard = React.lazy (() => import('../components/Admin/AdminDashboard'));
+const Vehicle = React.lazy (() => import('../components/Admin/Vehicle'));
 const DriverDashboard = React.lazy (() => import('../components/Driver/DriverDashboard'));
 const RiderDashboard = React.lazy (() => import('../components/Rider/RiderDashboard'));
 
@@ -104,6 +105,7 @@ const routes = [
   { path: '/admin', name: 'Admin', component: AdminDashboard },
   { path: '/rider', name: 'Rider', component: RiderDashboard },
   { path: '/driver', name: 'Driver', component: DriverDashboard },
+  { path: '/vehicle', name: 'Vehicle', component: Vehicle },
   { path: '/rider-list', exact: true,  name: 'Rider List', component: RiderList },
   { path: '/rider-details/:id', exact: true, name: 'Rider Details', component: RiderDetails },
   { path: '/driver-list', exact: true,  name: 'Driver List', component: DriverList },

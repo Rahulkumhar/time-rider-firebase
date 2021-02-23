@@ -28,6 +28,11 @@ const _nav =  [
         name: 'Driver',
         to: '/driver',
       },
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'Vehicle',
+        to: '/vehicle',
+      },
      ]
     },
   

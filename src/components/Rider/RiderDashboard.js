@@ -40,6 +40,7 @@ const RiderDashboard = () => {
   const [open,setOpen] = useState(false)
   const [info, setInfo] = useState(false)
   const [isActive,setIsActive] = useState(false)
+  const [seeDocx,setSeeDocx] = useState(false)
 
 
   const pageChange = newPage => {
@@ -136,7 +137,8 @@ const RiderDashboard = () => {
                     <th>User</th>
                     {/* <th className="text-center">Country</th> */}
                     <th>Active Rider</th>
-                    <th className="text-center">Payment Method</th>
+                    {/* <th className="text-center">Payment Method</th> */}
+                    <th className="text-center">Verification</th>
                     <th>Activity</th>
                   </tr>
                 </thead>
@@ -161,8 +163,11 @@ const RiderDashboard = () => {
                     labelOn={'\u2713'} labelOff={'\u2715'}/>
 
                     </td>
-                    <td className="text-center">
+                    {/* <td className="text-center">
                       <CIcon height={25} name="cib-cc-mastercard" />
+                    </td> */}
+                    <td className="text-center" onClick={()=>setSeeDocx(!seeDocx)}>
+                      See Documents
                     </td>
                     <td>
                       <div className="small text-muted">Last login</div>
@@ -187,6 +192,7 @@ const RiderDashboard = () => {
           </CCard>
         </CCol>
       </CRow>
+      
     </>
   )
 }
