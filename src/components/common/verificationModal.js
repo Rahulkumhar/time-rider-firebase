@@ -16,12 +16,12 @@ import {
 
 
 const VerificationModal = (props) => {
-    const {} = props;
+    const {setSeeDocx,seeDocx} = props;
     return ( 
         <CModal 
-        show={xlarge} 
-        onClose={() => setLarge(!large)}
-        size="x-lg"
+        show={seeDocx} 
+        onClose={()=>setSeeDocx(!seeDocx)}
+        size="xl"
       >
         <CModalHeader closeButton>
           <CModalTitle>Modal title</CModalTitle>
@@ -34,8 +34,8 @@ const VerificationModal = (props) => {
           culpa qui officia deserunt mollit anim id est laborum.
         </CModalBody>
         <CModalFooter>
-          <CButton color="primary" onClick={() => setLarge(!large)}>Do Something</CButton>{' '}
-          <CButton color="secondary" onClick={() => setLarge(!large)}>Cancel</CButton>
+          {/* <CButton color="primary" onClick={() => setSeeDocx(!seeDocx)}>Do Something</CButton>{' '}
+          <CButton color="secondary" onClick={() => setSeeDocx(!seeDocx)}>Cancel</CButton> */}
         </CModalFooter>
       </CModal>
 

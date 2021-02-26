@@ -21,6 +21,7 @@ import LoaderComp from 'src/components/Loader'
 import {getRiderListAction} from '../../actions/rider.action';
 import moment from 'moment'
 import MainChartExample from '../../views/charts/MainChartExample'
+import VerificationModal from '../common/verificationModal'
 
 const WidgetsDropdown = lazy(() => import('../../views/widgets/WidgetsDropdown'))
 const WidgetsBrand = lazy(() => import('../../views/widgets/WidgetsBrand.js'))
@@ -167,7 +168,7 @@ const RiderDashboard = () => {
                       <CIcon height={25} name="cib-cc-mastercard" />
                     </td> */}
                     <td className="text-center" onClick={()=>setSeeDocx(!seeDocx)}>
-                      See Documents
+                      <CIcon  name="cil-file" />
                     </td>
                     <td>
                       <div className="small text-muted">Last login</div>
@@ -183,7 +184,7 @@ const RiderDashboard = () => {
                   onActivePageChange={pageChange}
                   pages={totalPage}
                   doubleArrows={false} 
-                  align="center"
+                  align="center" 
                 />
                 </tfoot>
               </table>
@@ -191,6 +192,7 @@ const RiderDashboard = () => {
             </CCardBody>
           </CCard>
         </CCol>
+        <VerificationModal seeDocx={seeDocx} setSeeDocx={setSeeDocx}/>
       </CRow>
       
     </>
