@@ -1,4 +1,4 @@
-import React, { useState, useEffect,lazy } from 'react'
+import React, { useState, useEffect,lazy,useRef, createRef } from 'react'
 import { useHistory, useLocation } from 'react-router-dom'
 import {
   CBadge,
@@ -21,6 +21,7 @@ import LoaderComp from 'src/components/Loader'
 import {getDriverListAction} from '../../actions/driver.action';
 import moment from 'moment'
 import MainChartExample from '../../views/charts/MainChartExample'
+import Pdf from "react-to-pdf";
 
 const WidgetsDropdown = lazy(() => import('../../views/widgets/WidgetsDropdown'))
 const WidgetsBrand = lazy(() => import('../../views/widgets/WidgetsBrand.js'))
@@ -34,6 +35,7 @@ const DriverDashboard = () => {
   const history = useHistory()
   let dispatch = useDispatch()
 
+  const ref = createRef();
  
   const [page, setPage] = useState(1)
   const [open,setOpen] = useState(false)
@@ -55,7 +57,7 @@ const DriverDashboard = () => {
   return (
     <>
       <WidgetsDropdown />
-      <CRow>
+      <CRow ref={ref}>
       <CCol md="9" sm="9">
       <CCard style={{maxHeight:'400px'}}>
         
@@ -67,7 +69,11 @@ const DriverDashboard = () => {
             </CCol>
             <CCol sm="7" className="d-none d-md-block">
               <CButton color="primary" className="float-right">
-                <CIcon name="cil-cloud-download"/>
+                
+      <Pdf targetRef={ref} filename="month-report.pdf">
+      {({ toPdf }) =>   <CIcon  onClick={toPdf} name="cil-cloud-download"/>
+}
+                </Pdf>
               </CButton>
            
             </CCol>

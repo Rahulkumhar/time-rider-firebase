@@ -15,9 +15,9 @@ const TheHeaderDropdown = () => {
 
   let dispatch = useDispatch()
   const logout=()=>{
+    dispatch(setToken(null))
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    dispatch(setToken(null))
   }
   return (
     <CDropdown

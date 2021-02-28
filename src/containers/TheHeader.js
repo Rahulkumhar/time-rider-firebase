@@ -51,7 +51,7 @@ const TheHeader = () => {
       />
       <CHeaderBrand className="mx-auto d-lg-none" to="/">
         {/* <CIcon name="logo" height="48" alt="Logo"/>  */} 
-        <img src="logo512.png" alt="time rider logo" height="48"/> Time Rider
+        <img src="logo.png" alt="time rider logo" height="48"/> Time Rider
       </CHeaderBrand>
 
       <CHeaderNav className="d-md-down-none mr-auto">

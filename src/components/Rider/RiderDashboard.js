@@ -18,7 +18,7 @@ import {
 import CIcon from '@coreui/icons-react'
 import { useDispatch, useSelector } from 'react-redux'
 import LoaderComp from 'src/components/Loader'
-import {getRiderListAction} from '../../actions/rider.action';
+import {getRiderListAction,getRiderActiveAction} from '../../actions/rider.action';
 import moment from 'moment'
 import MainChartExample from '../../views/charts/MainChartExample'
 import VerificationModal from '../common/verificationModal'
@@ -27,11 +27,12 @@ const WidgetsDropdown = lazy(() => import('../../views/widgets/WidgetsDropdown')
 const WidgetsBrand = lazy(() => import('../../views/widgets/WidgetsBrand.js'))
 
 const RiderDashboard = () => {
-  const {riderData,totalPage, loading} = useSelector((states) => ({
+  const {riderData,totalPage, loading,riderActive} = useSelector((states) => ({
     riderData: states.riderReducer.riderData,
     totalPage: states.riderReducer.totalPage,
     id: states.riderReducer.riderData.id,
     loading: states.riderReducer.loading,
+    // riderActive:states.riderActiveReducer.riderDataActive,
   }));
   const history = useHistory()
   let dispatch = useDispatch()
@@ -40,7 +41,7 @@ const RiderDashboard = () => {
   const [page, setPage] = useState(1)
   const [open,setOpen] = useState(false)
   const [info, setInfo] = useState(false)
-  const [isActive,setIsActive] = useState(false)
+  const [isActive,setIsActive] = useState(null)
   const [seeDocx,setSeeDocx] = useState(false)
 
 
@@ -51,10 +52,16 @@ const RiderDashboard = () => {
 
   useEffect(() => {
     dispatch(getRiderListAction(page))
-    
   },[])
 
-
+const isActiveChange =(data)=>{
+ alert(data.id,data.status);
+  // dispatch(getRiderActiveAction({
+  //   id:data.id,
+  //   status:data.status
+  // }))
+  setIsActive({status:data.status})
+}
   return (
     <>
       <WidgetsDropdown />
@@ -149,7 +156,7 @@ const RiderDashboard = () => {
                     <td className="text-center">
                       <div className="c-avatar">
                         <img src={'avatars/user-name.png'} className="c-avatar-img" alt="" />
-                        <span className={isActive === true ? "c-avatar-status bg-success" : "c-avatar-status bg-danger" }></span>
+                        <span className={data.status === 1 ? "c-avatar-status bg-success" : "c-avatar-status bg-danger" }></span>
                       </div>
                     </td>
                     <td>
@@ -160,7 +167,7 @@ const RiderDashboard = () => {
                       </div>
                     </td>
                     <td>
-                    <CSwitch className={'mx-1'} onClick={()=> setIsActive(!isActive)} variant={'3d'} color={isActive === true ? 'success' : 'danger'} defaultChecked 
+                    <CSwitch className={'mx-1'} onClick={(data)=> isActiveChange(data)} variant={'3d'} color={data.status === 1 ? 'success' : 'danger'} checked={data.status === 1 ? true :false} 
                     labelOn={'\u2713'} labelOff={'\u2715'}/>
 
                     </td>

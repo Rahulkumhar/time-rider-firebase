@@ -30,12 +30,11 @@ const {loginRes, loading} = useSelector((states) => ({
   loading: states.users.loading,
 }));
 
-console.log(loading,'loading');
 useEffect(() => {
  
     if (loginRes && get(loginRes,'data.user',{})) {
         localStorage.setItem('user', JSON.stringify(get(loginRes,'data.user',{})));
-        localStorage.setItem('token', JSON.stringify(get(loginRes,'data.token','')));
+        localStorage.setItem('token', get(loginRes,'data.token','') );
         dispatch(setToken(get(loginRes,'data.token',null)))
     }
     
@@ -101,16 +100,9 @@ useEffect(() => {
                   </CForm>
                 </CCardBody>
               </CCard>
-              <CCard className="text-white bg-primary py-5 d-md-down-none" style={{ width: '44%' }}>
+              <CCard className="text-white login-bg py-5 d-md-down-none" >
                 <CCardBody className="text-center">
-                  {/* <div>
-                    <h2>Sign up</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                      labore et dolore magna aliqua.</p>
-                    <Link to="/register">
-                      <CButton color="primary" className="mt-3" active tabIndex={-1}>Register Now!</CButton>
-                    </Link>
-                  </div> */}
+                <img src="logo.png" alt="time rider logo" height="150"/>
                 </CCardBody>
               </CCard>
             </CCardGroup>

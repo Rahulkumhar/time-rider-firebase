@@ -27,9 +27,9 @@ const TheSidebar = () => {
       onShowChange={(val) => dispatch({type: 'set', sidebarShow: val })}
     >
       <CSidebarBrand className="d-md-down-none" to="/">
-        <img src="logo512.png" className="logo-img c-sidebar-brand-full" />
+        <img src="logo.png" className="logo-img c-sidebar-brand-full" />
         <span className="c-sidebar-brand-full mx-2"> Timer Rider</span>
-        <img src="logo512.png" className="logo-img c-sidebar-brand-minimized" />
+        <img src="logo.png" className="logo-img c-sidebar-brand-minimized" />
         {/* <CIcon
           className="c-sidebar-brand-full"
           src="Timer Rider"
