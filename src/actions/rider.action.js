@@ -2,8 +2,9 @@ import { config,messages } from '../config/index';
 import { riderConstants } from '../constants/rider.constants';
 import {GET, POST,PUT} from './response';
 import {get} from 'lodash'
+import { toast } from 'react-toastify';
 
-export const getRiderListAction = (page) => async (dispatch) => {
+export const getRiderListAction = (page=1) => async (dispatch) => {
     dispatch({type:riderConstants.RIDER_LOADING, payload: true})
     try {
         let response = await GET(`${config.getRider}?page_no=${page}`,{},true)
@@ -20,14 +21,18 @@ export const getRiderListAction = (page) => async (dispatch) => {
 }
 
 
-export const getRiderActiveAction = (id,status) => async (dispatch) => {
+export const getRiderActiveAction = (obj) => async (dispatch) => {
     dispatch({type:riderConstants.RIDER_LOADING, payload: true})
     try {
-        let response = await PUT(`${config.getRiderActive}?id=${id}&status=${status}`,{},true)
+        let response = await PUT(`${config.getRiderActive}`,obj,true)
         if(!response.error){   
+            toast.info(response.message)
             return await dispatch({
-                type: riderConstants.GET_RIDER_ACTIVE,payload: response.data
+                type: riderConstants.GET_RIDER_ACTIVE,payload:obj
             });     
+        }else{
+            toast.error(response.message)
+            return await dispatch({type:riderConstants.GET_RIDER_FAILED,payload:messages.catchErr})
         }
          
     } catch (err) {

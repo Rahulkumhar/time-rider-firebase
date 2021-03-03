@@ -22,17 +22,19 @@ import {getRiderListAction,getRiderActiveAction} from '../../actions/rider.actio
 import moment from 'moment'
 import MainChartExample from '../../views/charts/MainChartExample'
 import VerificationModal from '../common/verificationModal'
+import { toast } from 'react-toastify'
 
 const WidgetsDropdown = lazy(() => import('../../views/widgets/WidgetsDropdown'))
 const WidgetsBrand = lazy(() => import('../../views/widgets/WidgetsBrand.js'))
 
 const RiderDashboard = () => {
-  const {riderData,totalPage, loading,riderActive} = useSelector((states) => ({
+  const {riderData,totalPage, loading} = useSelector((states) => ({
     riderData: states.riderReducer.riderData,
     totalPage: states.riderReducer.totalPage,
     id: states.riderReducer.riderData.id,
     loading: states.riderReducer.loading,
-    // riderActive:states.riderActiveReducer.riderDataActive,
+    // message:states.riderActiveReducer.message,
+    //  riderActive:states.riderActiveReducer.riderDataActive,
   }));
   const history = useHistory()
   let dispatch = useDispatch()
@@ -51,16 +53,19 @@ const RiderDashboard = () => {
   }
 
   useEffect(() => {
-    dispatch(getRiderListAction(page))
+ 
+  dispatch(getRiderListAction())
+ 
   },[])
 
 const isActiveChange =(data)=>{
- alert(data.id,data.status);
-  // dispatch(getRiderActiveAction({
-  //   id:data.id,
-  //   status:data.status
-  // }))
-  setIsActive({status:data.status})
+  let obj = {
+    id:data._id,
+    status:data.status
+  }
+  dispatch(getRiderActiveAction(obj))
+  // setIsActive(data.status)
+ 
 }
   return (
     <>
@@ -167,7 +172,7 @@ const isActiveChange =(data)=>{
                       </div>
                     </td>
                     <td>
-                    <CSwitch className={'mx-1'} onClick={(data)=> isActiveChange(data)} variant={'3d'} color={data.status === 1 ? 'success' : 'danger'} checked={data.status === 1 ? true :false} 
+                    <CSwitch className={'mx-1'} onClick={()=> isActiveChange(data)} variant={'3d'} color={data.status === 1 ? 'success' : 'danger'} checked={data.status === 1 ? true :false} 
                     labelOn={'\u2713'} labelOff={'\u2715'}/>
 
                     </td>

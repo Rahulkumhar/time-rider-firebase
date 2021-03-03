@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     CButton,
     CCard,
@@ -22,7 +22,20 @@ import CIcon from '@coreui/icons-react';
 const VerificationModal = (props) => {
     const {setSeeDocx,seeDocx} = props;
     const [isActive,setIsActive] = useState(false)
-    const [ zoomDims, setZoomDims ] = useState({ height: 700, width: 800})
+    const [ zoomDims, setZoomDims ] = useState({ height: 800, width: 800})
+
+
+    useEffect(() => {
+      const handleResize=()=> {
+        setZoomDims({ height: 800, width: 800})
+      }
+  
+      window.addEventListener('resize', handleResize)
+  
+      return _ => {
+        window.removeEventListener('resize', handleResize)
+      }
+    })
 
     return ( 
         <CModal 
@@ -43,7 +56,6 @@ const VerificationModal = (props) => {
                                 alt: '',
                                 isFluidWidth: true,
                                 src: "img/addhar.png",
-                                sizes: '(max-width: 480px) 100vw, (max-width: 1200px) 30vw, 360px',
                              },
                             largeImage: {
                                 src: "img/addhar.png",
@@ -55,14 +67,14 @@ const VerificationModal = (props) => {
                             hintTextMouse: true,
                             lensStyle: { backgroundColor: 'rgba(0,0,0,.6)' },
                             hintTextTouch: true,
-                            shouldHideHintAfterFirstActivation: false,
+                            shouldHideHintAfterFirstActivation: true,
                             enlargedImagePosition: 'over',
                             isActivatedOnTouch: true,
                         }} />
         </CCol>
         <CCol md="2">
         <CSwitch className={'mx-1'} onClick={()=> setIsActive(!isActive)} variant={'3d'} 
-        color={isActive === true ? 'success' : 'danger'} defaultChecked 
+        color={isActive === true ? 'success' : 'danger'} defaultChecked
                     labelOn={'\u2713'} labelOff={'\u2715'}/>
 
         </CCol>
