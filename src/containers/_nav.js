@@ -222,44 +222,44 @@ const _nav =  [
   //       to: '/icons/brands',
   //     },
   //   ],
-  // },
-  // {
-  //   _tag: 'CSidebarNavDropdown',
-  //   name: 'Notifications',
-  //   route: '/notifications',
-  //   icon: 'cil-bell',
-  //   _children: [
-  //     {
-  //       _tag: 'CSidebarNavItem',
-  //       name: 'Alerts',
-  //       to: '/notifications/alerts',
-  //     },
-  //     {
-  //       _tag: 'CSidebarNavItem',
-  //       name: 'Badges',
-  //       to: '/notifications/badges',
-  //     },
-  //     {
-  //       _tag: 'CSidebarNavItem',
-  //       name: 'Modal',
-  //       to: '/notifications/modals',
-  //     },
-  //     {
-  //       _tag: 'CSidebarNavItem',
-  //       name: 'Toaster',
-  //       to: '/notifications/toaster'
-  //     }
-  //   ]
-  // },
+  // }
+  ,
+  {
+    _tag: 'CSidebarNavDropdown',
+    name: 'Verification Mangement',
+    route: '/',
+    icon: 'cil-bell',
+    _children: [
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'Rider',
+        to: '/',
+        badge: {
+          color: 'info',
+          text: 'NEW',
+        },
+      },
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'Driver',
+        to: '/',
+         badge: {
+          color: 'info',
+          text: 'NEW',
+        },
+      },
+     
+    ]
+  },
   // {
   //   _tag: 'CSidebarNavItem',
   //   name: 'Widgets',
   //   to: '/widgets',
   //   icon: 'cil-calculator',
-  //   badge: {
-  //     color: 'info',
-  //     text: 'NEW',
-  //   },
+    // badge: {
+    //   color: 'info',
+    //   text: 'NEW',
+    // },
   // },
   // {
   //   _tag: 'CSidebarNavDivider'
@@ -268,34 +268,26 @@ const _nav =  [
   //   _tag: 'CSidebarNavTitle',
   //   _children: ['Extras'],
   // },
-  // {
-  //   _tag: 'CSidebarNavDropdown',
-  //   name: 'Pages',
-  //   route: '/pages',
-  //   icon: 'cil-star',
-  //   _children: [
-  //     {
-  //       _tag: 'CSidebarNavItem',
-  //       name: 'Login',
-  //       to: '/login',
-  //     },
-  //     {
-  //       _tag: 'CSidebarNavItem',
-  //       name: 'Register',
-  //       to: '/register',
-  //     },
-  //     {
-  //       _tag: 'CSidebarNavItem',
-  //       name: 'Error 404',
-  //       to: '/404',
-  //     },
-  //     {
-  //       _tag: 'CSidebarNavItem',
-  //       name: 'Error 500',
-  //       to: '/500',
-  //     },
-  //   ],
-  // },
+  {
+    _tag: 'CSidebarNavDropdown',
+    name: 'Payment Mangement',
+    route: '/',
+    icon: 'cil-star',
+    _children: [
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'Rider',
+        to: '/',
+      },
+      {
+        _tag: 'CSidebarNavItem',
+        name: 'Driver',
+        to: '/',
+      },
+  
+      
+    ],
+  },
   // {
   //   _tag: 'CSidebarNavItem',
   //   name: 'Disabled',
