@@ -61,7 +61,7 @@ const RiderDashboard = () => {
 const isActiveChange =(data)=>{
   let obj = {
     id:data._id,
-    status:data.status
+    status:data.is_active === 0 ? 1 : 0
   }
   dispatch(getRiderActiveAction(obj))
   // setIsActive(data.status)
@@ -161,7 +161,7 @@ const isActiveChange =(data)=>{
                     <td className="text-center">
                       <div className="c-avatar">
                         <img src={'avatars/user-name.png'} className="c-avatar-img" alt="" />
-                        <span className={data.status === 1 ? "c-avatar-status bg-success" : "c-avatar-status bg-danger" }></span>
+                        <span className={data.is_active === 0 ? "c-avatar-status bg-success" : "c-avatar-status bg-danger" }></span>
                       </div>
                     </td>
                     <td>
@@ -172,7 +172,7 @@ const isActiveChange =(data)=>{
                       </div>
                     </td>
                     <td>
-                    <CSwitch className={'mx-1'} onClick={()=> isActiveChange(data)} variant={'3d'} color={data.status === 1 ? 'success' : 'danger'} checked={data.status === 1 ? true :false} 
+                    <CSwitch className={'mx-1'} onClick={()=> isActiveChange(data)} variant={'3d'} color={data.is_active === 1 ? 'success' : 'danger'} checked={data.is_active === 1 ? true :false} 
                     labelOn={'\u2713'} labelOff={'\u2715'}/>
 
                     </td>

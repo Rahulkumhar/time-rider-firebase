@@ -40,3 +40,43 @@ export const getRiderActiveAction = (obj) => async (dispatch) => {
         dispatch({type:riderConstants.GET_RIDER_FAILED,payload:messages.catchErr})
     }
 }
+
+export const getRiderDocAction = (obj) => async (dispatch) => {
+    dispatch({type:riderConstants.RIDER_LOADING, payload: true})
+    try {
+        let response = await GET(`${config.getRiderDoc}`,obj,true)
+        if(!response.error){   
+            toast.info(response.message)
+            return await dispatch({
+                type: riderConstants.GET_RIDER_DOC_LIST,payload:obj
+            });     
+        }else{
+            toast.error(response.message)
+            return await dispatch({type:riderConstants.GET_RIDER_FAILED,payload:messages.catchErr})
+        }
+         
+    } catch (err) {
+        console.log('ERROR in active action', err)
+        dispatch({type:riderConstants.GET_RIDER_FAILED,payload:messages.catchErr})
+    }
+}
+
+export const getRiderDocVerifyAction = (obj) => async (dispatch) => {
+    dispatch({type:riderConstants.RIDER_LOADING, payload: true})
+    try {
+        let response = await PUT(`${config.getRiderDocVerify}`,obj,true)
+        if(!response.error){   
+            toast.info(response.message)
+            return await dispatch({
+                type: riderConstants.GET_RIDER_DOC_LIST,payload:obj
+            });     
+        }else{
+            toast.error(response.message)
+            return await dispatch({type:riderConstants.GET_RIDER_FAILED,payload:messages.catchErr})
+        }
+         
+    } catch (err) {
+        console.log('ERROR in active action', err)
+        dispatch({type:riderConstants.GET_RIDER_FAILED,payload:messages.catchErr})
+    }
+}
