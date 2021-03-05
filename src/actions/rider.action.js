@@ -41,14 +41,14 @@ export const getRiderActiveAction = (obj) => async (dispatch) => {
     }
 }
 
-export const getRiderDocAction = (obj) => async (dispatch) => {
+export const getRiderDocAction = (id) => async (dispatch) => {
     dispatch({type:riderConstants.RIDER_LOADING, payload: true})
     try {
-        let response = await GET(`${config.getRiderDoc}`,obj,true)
+        let response = await GET(`${config.getRiderDoc}?id=${id}`,{},true)
         if(!response.error){   
             toast.info(response.message)
             return await dispatch({
-                type: riderConstants.GET_RIDER_DOC_LIST,payload:obj
+                type: riderConstants.GET_RIDER_DOC_LIST,payload:response.data
             });     
         }else{
             toast.error(response.message)
@@ -64,7 +64,7 @@ export const getRiderDocAction = (obj) => async (dispatch) => {
 export const getRiderDocVerifyAction = (obj) => async (dispatch) => {
     dispatch({type:riderConstants.RIDER_LOADING, payload: true})
     try {
-        let response = await PUT(`${config.getRiderDocVerify}`,obj,true)
+        let response = await PUT(`${config.getDriverDocVerify}`,obj,true)
         if(!response.error){   
             toast.info(response.message)
             return await dispatch({
@@ -76,7 +76,7 @@ export const getRiderDocVerifyAction = (obj) => async (dispatch) => {
         }
          
     } catch (err) {
-        console.log('ERROR in active action', err)
+        console.log('ERROR in active action err', err)
         dispatch({type:riderConstants.GET_RIDER_FAILED,payload:messages.catchErr})
     }
 }

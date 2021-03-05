@@ -31,9 +31,11 @@ export const riderReducer = (state = initialState, action) => {
       return { ...state, riderData: newRiderData, loading: false }
 
       case riderConstants.GET_RIDER_DOC_LIST:
-      return {
-        ...state, riderDocData: action.payload.data, loading: false
-      }
+        let riderDocDataNew = [...state.riderData]
+        riderDocDataNew.find((ele) => ele._id == action.payload.id).status = action.payload.status
+       
+        return { ...state, riderDocData: riderDocDataNew, loading: false }
+     
 
       case riderConstants.GET_RIDER_DOC_VERIFY:
         return {

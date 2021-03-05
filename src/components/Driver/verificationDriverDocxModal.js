@@ -21,15 +21,17 @@ import CIcon from '@coreui/icons-react';
 import { useDispatch, useSelector } from 'react-redux'
 import LoaderComp from 'src/components/Loader'
 import {getRiderDocVerifyAction,getRiderDocAction} from '../../actions/rider.action';
+import { get } from 'lodash';
 
 
-const VerificationModal = (props) => {
-  const {riderDocVerifyMessage,riderDocVerifyData, loading,ID} = useSelector((states) => ({
-
+const VerificationDriverDocxModal = (props) => {
+  const {riderDocVerifyMessage,riderDocVerifyData, data,loading} = useSelector((states) => ({
+    data: states.driverListReducer.driverData,
     // riderDocVerifyMessage:states.riderActiveReducer.riderDocVerifyMessage,
     // riderDocVerifyData:states.riderActiveReducer.riderDocVerifyData,
     // loading: states.riderReducer.loading,
   }));
+  const {ID} = props
   const history = useHistory()
   let dispatch = useDispatch()
 
@@ -53,17 +55,13 @@ const VerificationModal = (props) => {
     // })
 
     useEffect(() => {
- if (seeDocx === true) {
-   
-  dispatch(getRiderDocAction(ID))
- }
-     
-      },[])
+    dispatch(getRiderDocAction(ID))
+   },[])
 
       const isActiveChange =(data)=>{
         let obj = {
-          // id:data._id,
-          // status:data.is_active === 0 ? 1 : 0
+          id:ID,
+          status:get(data,'driver.is_verified',0) === 0 ? 1 : 0
         }
         dispatch(getRiderDocVerifyAction(obj))
         // setIsActive(data.status)
@@ -108,13 +106,13 @@ const VerificationModal = (props) => {
                         }} />
         </CCol>
         <CCol md="2">
-        {/* <CSwitch className={'mx-1'} onClick={()=> isActiveChange(data)} variant={'3d'}
-         color={data.is_active === 1 ? 'success' : 'danger'} checked={data.is_active === 1 ? true :false} 
-                    labelOn={'\u2713'} labelOff={'\u2715'}/> */}
+        <CSwitch className={'mx-1'} onClick={()=> isActiveChange(data)} variant={'3d'}
+         color={get(data,'driver.is_verified',0) === 1 ? 'success' : 'danger'} checked={get(data,'driver.is_verified',0) === 1 ? true :false} 
+                    labelOn={'\u2713'} labelOff={'\u2715'}/>
 
         </CCol>
         <CCol md="2">
-       <h6>{isActive === true ? "Reject" :  "Verify"}</h6>
+       {/* <h6>{isActive === true ? "Reject" :  "Verify"}</h6> */}
         </CCol>
         <CCol md="4">PAN CARD </CCol>
       {/* </CCard> */}
@@ -130,4 +128,4 @@ const VerificationModal = (props) => {
      );
 }
  
-export default VerificationModal;
+export default VerificationDriverDocxModal;

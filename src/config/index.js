@@ -7,7 +7,7 @@ const config = {
   login: `${BASE_URL}/auth/admin/login`,
   signUp: `${BASE_URL}/admin/create`,
   getRider: `${BASE_URL}/admin/rider-list`,
-  getRiderDoc: `${BASE_URL}/rider/doc-list`,
+  getRiderDoc: `${BASE_URL}/driver/doc-list`,
   getRiderDocVerify: `${BASE_URL}/rider/verify-unverified-doc`,
   getRiderActive: `${BASE_URL}/user/active-deactive-user`,
   getRiderDetails: `${BASE_URL}/admin/rider-detail`,

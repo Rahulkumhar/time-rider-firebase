@@ -22,6 +22,8 @@ import {getDriverListAction} from '../../actions/driver.action';
 import moment from 'moment'
 import MainChartExample from '../../views/charts/MainChartExample'
 import Pdf from "react-to-pdf";
+import { getRiderActiveAction } from 'src/actions/rider.action'
+import VerificationDriverDocxModal from './verificationDriverDocxModal';
 
 const WidgetsDropdown = lazy(() => import('../../views/widgets/WidgetsDropdown'))
 const WidgetsBrand = lazy(() => import('../../views/widgets/WidgetsBrand.js'))
@@ -41,6 +43,7 @@ const DriverDashboard = () => {
   const [open,setOpen] = useState(false)
   const [info, setInfo] = useState(false)
   const [isActive,setIsActive] = useState(false)
+  const [seeDocx,setSeeDocx] = useState(false)
 
 
   const pageChange = newPage => {
@@ -51,8 +54,19 @@ const DriverDashboard = () => {
   useEffect(() => {
     dispatch(getDriverListAction(page))
     
-  },[])
+  },[page])
 
+  const isActiveChange =(data)=>{
+    let obj = {
+      id:data._id,
+      status:data.is_active === 0 ? 1 : 0
+    }
+    dispatch(getRiderActiveAction(obj))
+    dispatch(getDriverListAction(page))
+    
+    // setIsActive(data.status)
+   
+  }
 
   return (
     <>
@@ -141,17 +155,19 @@ const DriverDashboard = () => {
                     <th>User</th>
                     {/* <th className="text-center">Country</th> */}
                     <th>Active Driver</th>
-                    <th className="text-center">Payment Method</th>
+                    {/* <th className="text-center">Payment Method</th> */}
+                    <th className="text-center">Verification</th>
                     <th>Activity</th>
                   </tr>
                 </thead>
                 <tbody>
                   {driverData && driverData.map((data,index)=>(
+                    <>
                   <tr key={index}>
                     <td className="text-center">
-                      <div className="c-avatar">
+                    <div className="c-avatar">
                         <img src={'avatars/user-name.png'} className="c-avatar-img" alt="" />
-                        <span className={isActive === true ?  "c-avatar-status bg-danger" : "c-avatar-status bg-success"  }></span>
+                        <span className={data.is_active === 0 ? "c-avatar-status bg-success" : "c-avatar-status bg-danger" }></span>
                       </div>
                     </td>
                     <td>
@@ -162,18 +178,23 @@ const DriverDashboard = () => {
                       </div>
                     </td>
                     <td>
-                    <CSwitch className={'mx-1'} onClick={()=> setIsActive(!isActive)} variant={'3d'} color={isActive === true ?  'danger' : 'success' } defaultChecked 
+                    <CSwitch className={'mx-1'} onClick={()=> isActiveChange(data)} variant={'3d'} 
+                    color={data.is_active === 1 ? 'success' : 'danger'} checked={data.is_active === 1 ? true :false} 
                     labelOn={'\u2713'} labelOff={'\u2715'}/>
 
                     </td>
-                    <td className="text-center">
-                      <CIcon height={25} name="cib-cc-mastercard" />
+                    <td className="text-center" onClick={()=>setSeeDocx(!seeDocx)}>
+                      <CIcon  name="cil-file" />
                     </td>
                     <td>
                       <div className="small text-muted">Last login</div>
                       <strong>{data.date_last_login}</strong>
                     </td>
                   </tr>
+
+                  
+        {seeDocx &&<VerificationDriverDocxModal ID={data._id} seeDocx={seeDocx} setSeeDocx={setSeeDocx}/>}
+        </>
                   ))}
                   
                 </tbody>

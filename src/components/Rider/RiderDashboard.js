@@ -157,6 +157,7 @@ const isActiveChange =(data)=>{
                 </thead>
                 <tbody>
                   {riderData && riderData.map((data,index)=>(
+                    <>
                   <tr key={index}>
                     <td className="text-center">
                       <div className="c-avatar">
@@ -172,7 +173,8 @@ const isActiveChange =(data)=>{
                       </div>
                     </td>
                     <td>
-                    <CSwitch className={'mx-1'} onClick={()=> isActiveChange(data)} variant={'3d'} color={data.is_active === 1 ? 'success' : 'danger'} checked={data.is_active === 1 ? true :false} 
+                    <CSwitch className={'mx-1'} onClick={()=> isActiveChange(data)} variant={'3d'} 
+                    color={data.is_active === 1 ? 'success' : 'danger'} checked={data.is_active === 1 ? true :false} 
                     labelOn={'\u2713'} labelOff={'\u2715'}/>
 
                     </td>
@@ -187,6 +189,9 @@ const isActiveChange =(data)=>{
                       <strong>{data.date_last_login}</strong>
                     </td>
                   </tr>
+                  
+        <VerificationModal ID={data._id} seeDocx={seeDocx} setSeeDocx={setSeeDocx}/>
+        </>
                   ))}
                   
                 </tbody>
@@ -204,7 +209,6 @@ const isActiveChange =(data)=>{
             </CCardBody>
           </CCard>
         </CCol>
-        <VerificationModal seeDocx={seeDocx} setSeeDocx={setSeeDocx}/>
       </CRow>
       
     </>
