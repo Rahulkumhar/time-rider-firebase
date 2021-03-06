@@ -18,7 +18,7 @@ import {
 import CIcon from '@coreui/icons-react'
 import { useDispatch, useSelector } from 'react-redux'
 import LoaderComp from 'src/components/Loader'
-import {getRiderListAction,getRiderActiveAction} from '../../actions/rider.action';
+import {getRiderListAction,getRiderActiveAction, getRiderDocAction} from '../../actions/rider.action';
 import moment from 'moment'
 import MainChartExample from '../../views/charts/MainChartExample'
 import VerificationModal from '../common/verificationModal'
@@ -45,6 +45,7 @@ const RiderDashboard = () => {
   const [info, setInfo] = useState(false)
   const [isActive,setIsActive] = useState(null)
   const [seeDocx,setSeeDocx] = useState(false)
+  const [showId,setShowID] = useState(1);
 
 
   const pageChange = newPage => {
@@ -65,9 +66,23 @@ const isActiveChange =(data)=>{
   }
   dispatch(getRiderActiveAction(obj))
   
-  dispatch(getRiderListAction(1))
+  // dispatch(getRiderListAction(1))
   // setIsActive(data.status)
  
+}
+
+const handleVerification = (data) => {
+  setSeeDocx(true);
+  setShowID(data._id)
+  dispatch(getRiderDocAction(data._id))
+}
+
+const onCloseModal = () => {
+  setSeeDocx(false);
+}
+
+if(seeDocx === true){
+  return( <VerificationModal ID={showId} seeDocx={true} setSeeDocx={onCloseModal}/>)
 }
   return (
     <>
@@ -164,7 +179,7 @@ const isActiveChange =(data)=>{
                     <td className="text-center">
                       <div className="c-avatar">
                         <img src={'avatars/user-name.png'} className="c-avatar-img" alt="" />
-                        <span className={data.is_active === 0 ? "c-avatar-status bg-success" : "c-avatar-status bg-danger" }></span>
+                        <span className={data.is_active === 1 ? "c-avatar-status bg-success" : "c-avatar-status bg-danger" }></span>
                       </div>
                     </td>
                     <td>
@@ -183,16 +198,19 @@ const isActiveChange =(data)=>{
                     {/* <td className="text-center">
                       <CIcon height={25} name="cib-cc-mastercard" />
                     </td> */}
-                    <td className="text-center" onClick={()=>setSeeDocx(!seeDocx)}>
+                    {data.is_doc===true ? <td className="text-center" onClick={()=>handleVerification(data)}>
                       <CIcon  name="cil-file" />
-                    </td>
+                    </td> : <td></td>}
+                    {/* <td className="text-center" onClick={()=>handleVerification(data)}>
+                      <CIcon  name="cil-file" />
+                    </td> */}
                     <td>
                       <div className="small text-muted">Last login</div>
                       <strong>{data.date_last_login}</strong>
                     </td>
                   </tr>
-                  
-        <VerificationModal ID={data._id} seeDocx={seeDocx} setSeeDocx={setSeeDocx}/>
+{/*                   
+        {seeDocx && <VerificationModal ID={data} seeDocx={seeDocx} setSeeDocx={setSeeDocx}/>} */}
         </>
                   ))}
                   

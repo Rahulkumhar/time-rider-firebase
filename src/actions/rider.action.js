@@ -61,14 +61,14 @@ export const getRiderDocAction = (id) => async (dispatch) => {
     }
 }
 
-export const getRiderDocVerifyAction = (obj) => async (dispatch) => {
+export const getRiderDocActiveAction = (obj) => async (dispatch) => {
     dispatch({type:riderConstants.RIDER_LOADING, payload: true})
     try {
         let response = await PUT(`${config.getDriverDocVerify}`,obj,true)
         if(!response.error){   
             toast.info(response.message)
             return await dispatch({
-                type: riderConstants.GET_RIDER_DOC_LIST,payload:obj
+                type: riderConstants.GET_RIDER_DOC_ACTIVE,payload:obj
             });     
         }else{
             toast.error(response.message)
@@ -76,7 +76,7 @@ export const getRiderDocVerifyAction = (obj) => async (dispatch) => {
         }
          
     } catch (err) {
-        console.log('ERROR in active action err', err)
+        console.log('ERROR in active action-------------->', err)
         dispatch({type:riderConstants.GET_RIDER_FAILED,payload:messages.catchErr})
     }
 }
