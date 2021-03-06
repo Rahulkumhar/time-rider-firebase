@@ -48,11 +48,12 @@ const DriverDashboard = () => {
 
   const pageChange = newPage => {
     setPage(newPage)
-    dispatch(getDriverListAction(newPage))
   }
 
   useEffect(() => {
-    dispatch(getDriverListAction(page))
+    if(page){
+      dispatch(getDriverListAction(page))
+    }
     
   },[page])
 
@@ -62,8 +63,7 @@ const DriverDashboard = () => {
       status:data.is_active === 0 ? 1 : 0
     }
     dispatch(getRiderActiveAction(obj))
-    dispatch(getDriverListAction(page))
-    
+    dispatch(getDriverListAction(1))
     // setIsActive(data.status)
    
   }

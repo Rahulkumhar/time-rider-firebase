@@ -58,7 +58,7 @@ const VerificationModal = (props) => {
   dispatch(getRiderDocAction(ID))
  }
      
-      },[])
+      },[seeDocx])
 
       const isActiveChange =(data)=>{
         let obj = {

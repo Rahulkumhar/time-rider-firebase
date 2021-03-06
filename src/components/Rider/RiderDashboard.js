@@ -54,7 +54,7 @@ const RiderDashboard = () => {
 
   useEffect(() => {
  
-  dispatch(getRiderListAction())
+  dispatch(getRiderListAction(page))
  
   },[])
 
@@ -64,6 +64,8 @@ const isActiveChange =(data)=>{
     status:data.is_active === 0 ? 1 : 0
   }
   dispatch(getRiderActiveAction(obj))
+  
+  dispatch(getRiderListAction(1))
   // setIsActive(data.status)
  
 }

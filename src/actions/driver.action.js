@@ -14,7 +14,7 @@ export const getDriverListAction = (page) => async (dispatch) => {
         }
          
     } catch (err) {
-        console.log('ERROR in login action', err)
+        console.log('ERROR in login action------------->', err)
         dispatch({type:driverConstants.GET_DRIVER_FAILED,payload:messages.catchErr})
     }
 }

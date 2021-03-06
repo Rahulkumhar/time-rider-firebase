@@ -56,7 +56,7 @@ export const getRiderDocAction = (id) => async (dispatch) => {
         }
          
     } catch (err) {
-        console.log('ERROR in active action', err)
+        console.log('ERROR in active action-------------->', err)
         dispatch({type:riderConstants.GET_RIDER_FAILED,payload:messages.catchErr})
     }
 }

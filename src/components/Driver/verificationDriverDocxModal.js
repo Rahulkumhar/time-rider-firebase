@@ -26,12 +26,13 @@ import { get } from 'lodash';
 
 const VerificationDriverDocxModal = (props) => {
   const {riderDocVerifyMessage,riderDocVerifyData, data,loading} = useSelector((states) => ({
-    data: states.driverListReducer.driverData,
+    data: states.driverListReducer.driverData[0],
     // riderDocVerifyMessage:states.riderActiveReducer.riderDocVerifyMessage,
     // riderDocVerifyData:states.riderActiveReducer.riderDocVerifyData,
     // loading: states.riderReducer.loading,
   }));
   const {ID} = props
+  console.log(data,'data');
   const history = useHistory()
   let dispatch = useDispatch()
 
@@ -83,7 +84,7 @@ const VerificationDriverDocxModal = (props) => {
       {/* <CCard> */}
         <CCol md="4" className="mt-2">
           <h6>PAN CARD</h6>
-        <ReactImageMagnify {...{
+        {/* <ReactImageMagnify {...{
                             smallImage: {
                                 alt: '',
                                 isFluidWidth: true,
@@ -103,14 +104,14 @@ const VerificationDriverDocxModal = (props) => {
                             shouldHideHintAfterFirstActivation: false,
                             enlargedImagePosition: 'over',
                             isActivatedOnTouch: true,
-                        }} />
+                        }} /> */}
         </CCol>
-        <CCol md="2">
+        {/* <CCol md="2">
         <CSwitch className={'mx-1'} onClick={()=> isActiveChange(data)} variant={'3d'}
          color={get(data,'driver.is_verified',0) === 1 ? 'success' : 'danger'} checked={get(data,'driver.is_verified',0) === 1 ? true :false} 
                     labelOn={'\u2713'} labelOff={'\u2715'}/>
 
-        </CCol>
+        </CCol> */}
         <CCol md="2">
        {/* <h6>{isActive === true ? "Reject" :  "Verify"}</h6> */}
         </CCol>
