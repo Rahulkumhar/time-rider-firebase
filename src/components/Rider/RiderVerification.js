@@ -27,7 +27,7 @@ import { toast } from 'react-toastify'
 const WidgetsDropdown = lazy(() => import('../../views/widgets/WidgetsDropdown'))
 const WidgetsBrand = lazy(() => import('../../views/widgets/WidgetsBrand.js'))
 
-const RiderDashboard = () => {
+const RiderVerification = () => {
   const {riderData,totalPage, loading} = useSelector((states) => ({
     riderData: states.riderReducer.riderData,
     totalPage: states.riderReducer.totalPage,
@@ -86,71 +86,7 @@ if(seeDocx === true){
 }
   return (
     <>
-      {/* <WidgetsDropdown /> */}
-      <CRow>
-      <CCol md="9" sm="9">
-      <CCard style={{maxHeight:'400px'}}>
-        
-        <CCardBody >
-          <CRow>
-            <CCol sm="5">
-              <h4 id="traffic" className="card-title mb-0">Month Earning</h4>
-              <div className="small text-muted">Feb 2021</div>
-            </CCol>
-            <CCol sm="7" className="d-none d-md-block">
-              <CButton color="primary" className="float-right">
-                <CIcon name="cil-cloud-download"/>
-              </CButton>
-           
-            </CCol>
-          </CRow>
-          <MainChartExample style={{height: '300px', marginTop: '40px'}}/>
-          
-        </CCardBody>
-       
-       
-      </CCard>
-            </CCol>
-            <CCol md sm="3">
-<CCard style={{height: '400px',}}>      
-  <CCardBody >
-        <CCol md sm="3" className="mb-sm-2 mb-0">
-              <div className="text-muted">Total Earning</div>
-              <strong>29.703  (40%)</strong>
-              <CProgress
-                className="progress-xs mt-2"
-                precision={1}
-                color="info"
-                value={40}
-              />
-            </CCol>
-            <CCol md sm="3" className="mb-sm-2 mb-0 d-md-down-none">
-              <div className="text-muted">Admin Earning</div>
-              <strong>24.093  (20%)</strong>
-              <CProgress
-                className="progress-xs mt-2"
-                precision={1}
-                color="success"
-                value={40}
-              />
-            </CCol>
-            <CCol md sm="3" className="mb-sm-2 mb-0">
-              <div className="text-muted">Rider Earning</div>
-              <strong>22.123  (80%)</strong>
-              <CProgress
-                className="progress-xs mt-2"
-                precision={1}
-                color="danger"
-                value={40}
-              />
-            </CCol>
-           
-            
-        </CCardBody>
-        </CCard>
-            </CCol>
-            </CRow>
-
+   
 
       <CRow>
         <CCol>
@@ -237,4 +173,4 @@ if(seeDocx === true){
   )
 }
 
-export default RiderDashboard
+export default RiderVerification

@@ -28,11 +28,11 @@ const TheSidebar = () => {
     >
       <CSidebarBrand className="d-md-down-none" to="/">
         <img src="logo.png" className="logo-img c-sidebar-brand-full" />
-        <span className="c-sidebar-brand-full mx-2"> Timer Rider</span>
+        <span className="c-sidebar-brand-full mx-2"> Time Admin</span>
         <img src="logo.png" className="logo-img c-sidebar-brand-minimized" />
         {/* <CIcon
           className="c-sidebar-brand-full"
-          src="Timer Rider"
+          src="Time Admin"
           height={35}
         />
         <CIcon

@@ -45,7 +45,6 @@ export const getDriverDocAction = (id) => async (dispatch) => {
     try {
         let response = await GET(`${config.getDriverDoc}?id=${id}`,{},true)
         if(!response.error){   
-            toast.info(response.message)
             return await dispatch({
                 type: driverConstants.GET_DRIVER_DOC_LIST,payload:response.data
             });     

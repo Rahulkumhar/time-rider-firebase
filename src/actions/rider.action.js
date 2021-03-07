@@ -46,7 +46,6 @@ export const getRiderDocAction = (id) => async (dispatch) => {
     try {
         let response = await GET(`${config.getRiderDoc}?id=${id}`,{},true)
         if(!response.error){   
-            toast.info(response.message)
             return await dispatch({
                 type: riderConstants.GET_RIDER_DOC_LIST,payload:response.data
             });     

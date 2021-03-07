@@ -10,7 +10,7 @@ const TheFooter = () => {
       </div>
       <div className="mfs-auto">
         <span className="mr-1">Powered by</span>
-        <a  rel="noopener noreferrer">Timer Rider</a>
+        <a  rel="noopener noreferrer">Time Admin</a>
       </div>
     </CFooter>
   )

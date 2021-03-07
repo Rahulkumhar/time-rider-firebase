@@ -233,7 +233,7 @@ const _nav =  [
       {
         _tag: 'CSidebarNavItem',
         name: 'Rider',
-        to: '/',
+        to: '/rider-verification',
         badge: {
           color: 'info',
           text: 'NEW',
@@ -242,7 +242,7 @@ const _nav =  [
       {
         _tag: 'CSidebarNavItem',
         name: 'Driver',
-        to: '/',
+        to: '/driver-verification',
          badge: {
           color: 'info',
           text: 'NEW',

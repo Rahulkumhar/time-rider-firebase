@@ -81,7 +81,8 @@ const VerificationModal = (props) => {
       <CModalHeader closeButton>
         <CModalTitle>Documents Verification</CModalTitle>
       </CModalHeader>
-      <CModalBody>
+      
+      {/* <CModalBody>
         <div className="container">
           {riderDocData.map((ele, index) => (
              <>
@@ -101,7 +102,6 @@ const VerificationModal = (props) => {
               
              </CRow>
              <CRow>
-               {/* <CCard> */}
 
                
                <CCol md="4" className="mt-2">
@@ -115,9 +115,10 @@ const VerificationModal = (props) => {
                    largeImage: {
                      src: `${base_url}${ele.front_img_url}`,
                      width: zoomDims.width,
-                     height: zoomDims.height
+                     height: zoomDims.height,
+                     sizes:"(max-width: 1200px) 30vw"
                    },
-                   hintComponent: () => (<div>Zoom</div>),
+                   hintComponent: () => (<div >Zoom</div>),
                    isHintEnabled: true,
                    hintTextMouse: true,
                    lensStyle: { backgroundColor: 'rgba(0,0,0,.6)' },
@@ -152,14 +153,95 @@ const VerificationModal = (props) => {
                </CCol>
 
 
-               {/* <CCol md="4">PAN CARD </CCol> */}
-               {/* </CCard> */}
+       
              </CRow>
            </>
          
           ))}
         </div>
       </CModalBody>
+      */}
+
+<CModalBody>
+        <div className="container">
+          {riderDocData.map((ele, index) => (
+            <>
+            
+            <h5 style={{ textTransform: "capitalize" }}>{ele.type.replace(/_/g, ' ')}</h5>
+            <CRow>
+              
+             <CCol md="2">
+               <h6 style={{ textTransform: "capitalize" }}>{ele.bank_name}</h6>
+               <h6 style={{ textTransform: "capitalize" }}>{ele.bank_number}</h6>
+               </CCol>
+               <CCol md="2">
+                 <h6>{ele.status === 0 ? "Reject" : "Verify"}</h6>
+               </CCol>
+               <CCol md="2">
+                 <CSwitch className={'mx-1'} onClick={() => isActiveChange(ele)} variant={'3d'}
+                   color={ele.status === 1 ? 'success' : 'danger'} checked={ele.status === 1 ? true : false}
+                   labelOn={'\u2713'} labelOff={'\u2715'} />
+
+               </CCol>
+              
+             </CRow>
+              <CRow>
+                {/* <CCard> */}
+
+                <CCol md="4" className="mt-2">
+                  <ReactImageMagnify {...{
+                    smallImage: {
+                      alt: '',
+                      isFluidWidth: true,
+                      src: `${base_url}${ele.front_img_url}`,
+                    },
+                    largeImage: {
+                      src: `${base_url}${ele.front_img_url}`,
+                      width: zoomDims.width,
+                      height: zoomDims.height
+                    },
+                    hintComponent: () => (<div>Zoom</div>),
+                    isHintEnabled: true,
+                    hintTextMouse: true,
+                    lensStyle: { backgroundColor: 'rgba(0,0,0,.6)' },
+                    hintTextTouch: true,
+                    shouldHideHintAfterFirstActivation: false,
+                    enlargedImagePosition: 'over',
+                    isActivatedOnTouch: true,
+                  }} />
+                </CCol>
+                <CCol md="4" className="mt-2">
+                  <ReactImageMagnify {...{
+                    smallImage: {
+                      alt: '',
+                      isFluidWidth: true,
+                      src: `${base_url}${ele.back_img_url}`,
+                    },
+                    largeImage: {
+                      src: `${base_url}${ele.back_img_url}`,
+                      width: zoomDims.width,
+                      height: zoomDims.height
+                    },
+                    hintComponent: () => (<div>Zoom</div>),
+                    isHintEnabled: true,
+                    hintTextMouse: true,
+                    lensStyle: { backgroundColor: 'rgba(0,0,0,.6)' },
+                    hintTextTouch: true,
+                    shouldHideHintAfterFirstActivation: false,
+                    enlargedImagePosition: 'over',
+                    isActivatedOnTouch: true,
+                  }} />
+                </CCol>
+
+
+                {/* <CCol md="4">PAN CARD </CCol> */}
+                {/* </CCard> */}
+              </CRow>
+            </>
+          ))}
+        </div>
+      </CModalBody>
+   
       <CModalFooter>
         {/* <CButton color="primary" onClick={() => setSeeDocx(!seeDocx)}>Do Something</CButton>{' '} */}
         <CButton color="secondary" onClick={() => setSeeDocx(!seeDocx)}>Close</CButton>

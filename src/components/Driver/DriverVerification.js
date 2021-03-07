@@ -28,7 +28,7 @@ import VerificationDriverDocxModal from './verificationDriverDocxModal';
 const WidgetsDropdown = lazy(() => import('../../views/widgets/WidgetsDropdown'))
 const WidgetsBrand = lazy(() => import('../../views/widgets/WidgetsBrand.js'))
 
-const DriverDashboard = () => {
+const DriverVerification = () => {
   const { driverData, totalPage, loading } = useSelector((states) => ({
     driverData: states.driverListReducer.driverData,
     totalPage: states.driverListReducer.totalPage,
@@ -84,76 +84,7 @@ const DriverDashboard = () => {
 
   return (
     <>
-      {/* <WidgetsDropdown /> */}
-      {/* <CRow ref={ref}>
-        <CCol md="9" sm="9">
-          <CCard style={{ maxHeight: '400px' }}>
-
-            <CCardBody >
-              <CRow>
-                <CCol sm="5">
-                  <h4 id="traffic" className="card-title mb-0">Month Earning</h4>
-                  <div className="small text-muted">Feb 2021</div>
-                </CCol>
-                <CCol sm="7" className="d-none d-md-block">
-                  <CButton color="primary" className="float-right">
-
-                    <Pdf targetRef={ref} filename="month-report.pdf">
-                      {({ toPdf }) => <CIcon onClick={toPdf} name="cil-cloud-download" />
-                      }
-                    </Pdf>
-                  </CButton>
-
-                </CCol>
-              </CRow>
-              <MainChartExample style={{ height: '300px', marginTop: '40px' }} />
-
-            </CCardBody>
-
-
-          </CCard>
-        </CCol>
-        <CCol md sm="3">
-          <CCard style={{ height: '400px', }}>
-            <CCardBody >
-              <CCol md sm="3" className="mb-sm-2 mb-0">
-                <div className="text-muted">Total Earning</div>
-                <strong>29.703  (40%)</strong>
-                <CProgress
-                  className="progress-xs mt-2"
-                  precision={1}
-                  color="info"
-                  value={40}
-                />
-              </CCol>
-              <CCol md sm="3" className="mb-sm-2 mb-0 d-md-down-none">
-                <div className="text-muted">Admin Earning</div>
-                <strong>24.093  (20%)</strong>
-                <CProgress
-                  className="progress-xs mt-2"
-                  precision={1}
-                  color="success"
-                  value={40}
-                />
-              </CCol>
-              <CCol md sm="3" className="mb-sm-2 mb-0">
-                <div className="text-muted">Driver Earning</div>
-                <strong>22.123  (80%)</strong>
-                <CProgress
-                  className="progress-xs mt-2"
-                  precision={1}
-                  color="danger"
-                  value={40}
-                />
-              </CCol>
-
-
-            </CCardBody>
-          </CCard>
-        </CCol>
-      </CRow>
- */}
-
+   
       <CRow>
         <CCol>
           <CCard>
@@ -170,7 +101,7 @@ const DriverDashboard = () => {
                     {/* <th className="text-center">Country</th> */}
                     <th>Active Driver</th>
                     {/* <th className="text-center">Payment Method</th> */}
-                    {/* <th className="text-center">Verification</th> */}
+                    <th className="text-center">Verification</th>
                     <th>Activity</th>
                   </tr>
                 </thead>
@@ -198,9 +129,9 @@ const DriverDashboard = () => {
 
                         </td>
                         {/* {data.is_doc===true ? */}
-                         {/* <td className="text-center" onClick={()=>handleVerification(data)}>
+                         <td className="text-center" onClick={()=>handleVerification(data)}>
                       <CIcon  name="cil-file" />
-                    </td> */}
+                    </td>
                      {/* : <td></td>} */}
                         {/* <td className="text-center" onClick={() => handleVerification(data)}>
                           <CIcon name="cil-file" />
@@ -232,8 +163,9 @@ const DriverDashboard = () => {
           </CCard>
         </CCol>
       </CRow>
+   
     </>
   )
 }
 
-export default DriverDashboard
+export default DriverVerification

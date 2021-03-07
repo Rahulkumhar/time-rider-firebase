@@ -80,9 +80,13 @@ const VerificationDriverDocxModal = (props) => {
         <div className="container">
           {data.map((ele, index) => (
             <>
+            
+            <h5 style={{ textTransform: "capitalize" }}>{ele.type.replace(/_/g, ' ')}</h5>
             <CRow>
+              
              <CCol md="2">
-               <h6 style={{ textTransform: "capitalize" }}>{ele.type.replace(/_/g, ' ')}</h6>
+               <h6 style={{ textTransform: "capitalize" }}>{ele.bank_name}</h6>
+               <h6 style={{ textTransform: "capitalize" }}>{ele.bank_number}</h6>
                </CCol>
                <CCol md="2">
                  <h6>{ele.status === 0 ? "Reject" : "Verify"}</h6>
@@ -104,7 +108,6 @@ const VerificationDriverDocxModal = (props) => {
                       alt: '',
                       isFluidWidth: true,
                       src: `${base_url}${ele.front_img_url}`,
-                      sizes: '(max-width: 480px) 100vw, (max-width: 1200px) 30vw, 360px',
                     },
                     largeImage: {
                       src: `${base_url}${ele.front_img_url}`,
@@ -127,7 +130,6 @@ const VerificationDriverDocxModal = (props) => {
                       alt: '',
                       isFluidWidth: true,
                       src: `${base_url}${ele.back_img_url}`,
-                      sizes: '(max-width: 480px) 100vw, (max-width: 1200px) 30vw, 360px',
                     },
                     largeImage: {
                       src: `${base_url}${ele.back_img_url}`,
@@ -153,6 +155,7 @@ const VerificationDriverDocxModal = (props) => {
           ))}
         </div>
       </CModalBody>
+   
       <CModalFooter>
         {/* <CButton color="primary" onClick={() => setSeeDocx(!seeDocx)}>Do Something</CButton>{' '} */}
         <CButton color="secondary" onClick={() => setSeeDocx(!seeDocx)}>Close</CButton>

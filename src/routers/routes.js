@@ -46,7 +46,9 @@ const DriverDetails = React.lazy (() => import('../components/Driver/DriverDetai
 const AdminDashboard = React.lazy (() => import('../components/Admin/AdminDashboard'));
 const Vehicle = React.lazy (() => import('../components/Admin/Vehicle'));
 const DriverDashboard = React.lazy (() => import('../components/Driver/DriverDashboard'));
+const DriverVerification = React.lazy (() => import('../components/Driver/DriverVerification'));
 const RiderDashboard = React.lazy (() => import('../components/Rider/RiderDashboard'));
+const RiderVerification = React.lazy (() => import('../components/Rider/RiderVerification'));
 
 ///   ///
 
@@ -108,8 +110,10 @@ const routes = [
   { path: '/vehicle', name: 'Vehicle', component: Vehicle },
   { path: '/rider-list', exact: true,  name: 'Rider List', component: RiderList },
   { path: '/rider-details/:id', exact: true, name: 'Rider Details', component: RiderDetails },
+  { path: '/rider-verification', exact: true, name: 'Rider Verification', component: RiderVerification },
   { path: '/driver-list', exact: true,  name: 'Driver List', component: DriverList },
   { path: '/driver-details/:id', exact: true, name: 'Driver Details', component: DriverDetails },
+  { path: '/driver-verification', exact: true, name: 'Driver Verification', component: DriverVerification },
 ];
 
 export default routes;
