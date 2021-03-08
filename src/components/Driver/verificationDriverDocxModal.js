@@ -22,7 +22,6 @@ import { get } from 'lodash';
 import { getDeliverDocActiveAction } from 'src/actions/driver.action';
 import { base_url } from 'src/util/constant';
 
-
 const VerificationDriverDocxModal = (props) => {
   const { riderDocVerifyMessage, riderDocVerifyData, data, loading } = useSelector((states) => ({
     data: states.driverListReducer.driverDocData,
